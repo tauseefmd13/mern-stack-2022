@@ -5,6 +5,8 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ForgotPassword from "../pages/ForgotPassword";
 import ResetPassword from "../pages/ResetPassword";
+import CheckAuth from "../utils/CheckAuth";
+import Guest from "../utils/Guest";
 
 const router = createBrowserRouter([
 	{
@@ -16,19 +18,43 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "/login",
-				element: <Login />,
+				element: (
+					<Guest>
+						<Login />
+					</Guest>
+				),
 			},
 			{
 				path: "/register",
-				element: <Register />,
+				element: (
+					<Guest>
+						<Register />
+					</Guest>
+				),
 			},
 			{
 				path: "/forgot-password",
-				element: <ForgotPassword />,
+				element: (
+					<Guest>
+						<ForgotPassword />
+					</Guest>
+				),
 			},
 			{
 				path: "/reset-password/:id/:token",
-				element: <ResetPassword />,
+				element: (
+					<Guest>
+						<ResetPassword />
+					</Guest>
+				),
+			},
+			{
+				path: "/change-password",
+				element: (
+					<CheckAuth>
+						<div>Change Password</div>
+					</CheckAuth>
+				),
 			},
 		],
 	},
