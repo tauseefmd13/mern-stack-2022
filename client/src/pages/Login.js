@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useLoginMutation } from "../services/authApi";
+import { useLoginMutation } from "../app/services/authApi";
 import { setUser } from "../features/auth/authSlice";
 import ValidationError from "../components/ValidationError";
 import ErrorMessage from "../components/ErrorMessage";

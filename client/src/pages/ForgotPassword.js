@@ -6,9 +6,11 @@ import {
 	Button,
 	Container,
 	Grid,
+	Link,
 	TextField,
 	Typography,
 } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 
 const ForgotPassword = () => {
 	const handleSubmit = (event) => {
@@ -55,6 +57,15 @@ const ForgotPassword = () => {
 						>
 							Email Password Reset Link
 						</Button>
+					</Grid>
+					<Grid container justifyContent="center">
+						<Grid item>
+							<RouterLink to="/login">
+								<Link component="span" variant="body2">
+									Already know password? Login
+								</Link>
+							</RouterLink>
+						</Grid>
 					</Grid>
 				</Box>
 			</Box>

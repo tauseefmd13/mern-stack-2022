@@ -4,7 +4,7 @@ import { NavLink as BaseNavLink } from "react-router-dom";
 export const NavLink = React.forwardRef(({ ...props }, ref) => {
 	let activeClassName = "inherit";
 	let activeStyle = {
-		backgroundColor: "#2196f3",
+		textDecoration: "underline",
 	};
 
 	return (
