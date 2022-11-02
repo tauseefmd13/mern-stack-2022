@@ -1,11 +1,11 @@
 import React from "react";
-import { Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 
 const Home = () => {
 	return (
-		<>
+		<Container component="main">
 			<Grid container justifyContent="center">
-				<Grid item sm={10}>
+				<Grid item xs={12}>
 					<h1>Home</h1>
 					<hr />
 					<p>
@@ -23,7 +23,7 @@ const Home = () => {
 					</p>
 				</Grid>
 			</Grid>
-		</>
+		</Container>
 	);
 };
 

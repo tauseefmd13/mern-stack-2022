@@ -62,29 +62,31 @@ const ForgotPassword = () => {
 					id="forgot-password-form"
 					onSubmit={handleSubmit}
 					noValidate
-					sx={{ mt: 1 }}
+					sx={{ mt: 3 }}
 				>
 					<Grid container spacing={2}>
-						<TextField
-							margin="normal"
-							required
-							fullWidth
-							id="email"
-							label="Email Address"
-							name="email"
-							autoComplete="email"
-							autoFocus
-						/>
-						<ValidationError error={errors?.email?.message} />
-
-						<Button
-							type="submit"
-							fullWidth
-							variant="contained"
-							sx={{ mt: 3, mb: 2 }}
-						>
-							{isLoading ? "Loading..." : "Email Password Reset Link"}
-						</Button>
+						<Grid item xs={12}>
+							<TextField
+								required
+								fullWidth
+								id="email"
+								label="Email Address"
+								name="email"
+								autoComplete="email"
+								autoFocus
+							/>
+							<ValidationError error={errors?.email?.message} />
+						</Grid>
+						<Grid item xs={12}>
+							<Button
+								type="submit"
+								fullWidth
+								variant="contained"
+								sx={{ mt: 1, mb: 2 }}
+							>
+								{isLoading ? "Loading..." : "Email Password Reset Link"}
+							</Button>
+						</Grid>
 					</Grid>
 					<Grid container justifyContent="center">
 						<Grid item>

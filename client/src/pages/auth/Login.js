@@ -65,32 +65,33 @@ const Login = () => {
 					id="login-form"
 					onSubmit={handleSubmit}
 					noValidate
-					sx={{ mt: 1 }}
+					sx={{ mt: 3 }}
 				>
 					<Grid container spacing={2}>
-						<TextField
-							margin="normal"
-							required
-							fullWidth
-							id="email"
-							label="Email Address"
-							name="email"
-							autoComplete="email"
-							autoFocus
-						/>
-						<ValidationError error={errors?.email?.message} />
-
-						<TextField
-							margin="normal"
-							required
-							fullWidth
-							name="password"
-							label="Password"
-							type="password"
-							id="password"
-							autoComplete="current-password"
-						/>
-						<ValidationError error={errors?.password?.message} />
+						<Grid item xs={12}>
+							<TextField
+								required
+								fullWidth
+								id="email"
+								label="Email Address"
+								name="email"
+								autoComplete="email"
+								autoFocus
+							/>
+							<ValidationError error={errors?.email?.message} />
+						</Grid>
+						<Grid item xs={12}>
+							<TextField
+								required
+								fullWidth
+								name="password"
+								label="Password"
+								type="password"
+								id="password"
+								autoComplete="current-password"
+							/>
+							<ValidationError error={errors?.password?.message} />
+						</Grid>
 
 						<Grid container justifyContent="flex-end">
 							<Grid item>
@@ -101,15 +102,15 @@ const Login = () => {
 								</RouterLink>
 							</Grid>
 						</Grid>
-						<Button
-							type="submit"
-							fullWidth
-							variant="contained"
-							sx={{ mt: 3, mb: 2 }}
-						>
-							{isLoading ? "Loading..." : "Login"}
-						</Button>
 					</Grid>
+					<Button
+						type="submit"
+						fullWidth
+						variant="contained"
+						sx={{ mt: 3, mb: 2 }}
+					>
+						{isLoading ? "Loading..." : "Login"}
+					</Button>
 					<Grid container justifyContent="center">
 						<Grid item>
 							<RouterLink to="/register">

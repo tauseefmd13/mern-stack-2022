@@ -7,6 +7,7 @@ import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import ForgotPassword from "../pages/auth/ForgotPassword";
 import ResetPassword from "../pages/auth/ResetPassword";
+import Profile from "../pages/auth/Profile";
 import ChangePassword from "../pages/auth/ChangePassword";
 
 const router = createBrowserRouter([
@@ -47,6 +48,14 @@ const router = createBrowserRouter([
 					<Guest>
 						<ResetPassword />
 					</Guest>
+				),
+			},
+			{
+				path: "/profile",
+				element: (
+					<CheckAuth>
+						<Profile />
+					</CheckAuth>
 				),
 			},
 			{
