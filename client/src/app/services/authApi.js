@@ -11,7 +11,7 @@ export const authApi = createApi({
 					method: "POST",
 					body: user,
 					headers: {
-						"Content-type": "application/json",
+						"Content-Type": "application/json",
 					},
 				};
 			},
@@ -23,7 +23,7 @@ export const authApi = createApi({
 					method: "POST",
 					body: user,
 					headers: {
-						"Content-type": "application/json",
+						"Content-Type": "application/json",
 					},
 				};
 			},
@@ -35,7 +35,7 @@ export const authApi = createApi({
 					method: "POST",
 					body: user,
 					headers: {
-						"Content-type": "application/json",
+						"Content-Type": "application/json",
 					},
 				};
 			},
@@ -47,7 +47,7 @@ export const authApi = createApi({
 					method: "POST",
 					body: data,
 					headers: {
-						"Content-type": "application/json",
+						"Content-Type": "application/json",
 					},
 				};
 			},
@@ -58,7 +58,7 @@ export const authApi = createApi({
 					url: "users/me",
 					method: "GET",
 					headers: {
-						"Content-type": "application/json",
+						"Content-Type": "application/json",
 						Authorization: `Bearer ${token}`,
 					},
 				};
@@ -71,6 +71,7 @@ export const authApi = createApi({
 					method: "POST",
 					body: data,
 					headers: {
+						"Content-Type": "application/json",
 						Authorization: `Bearer ${token}`,
 					},
 				};
