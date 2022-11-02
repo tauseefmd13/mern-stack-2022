@@ -10,34 +10,31 @@ import {
 	TextField,
 	Typography,
 } from "@mui/material";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useLoginMutation } from "../app/services/authApi";
-import { setUser } from "../features/auth/authSlice";
-import ValidationError from "../components/ValidationError";
-import ErrorMessage from "../components/ErrorMessage";
-import Cookies from "js-cookie";
+import { Link as RouterLink } from "react-router-dom";
+import { useForgotPasswordMutation } from "../../app/services/authApi";
+import ValidationError from "../../components/ValidationError";
+import SuccessMessage from "../../components/SuccessMessage";
+import ErrorMessage from "../../components/ErrorMessage";
 
-const Login = () => {
+const ForgotPassword = () => {
+	const [successMessage, setSuccessMessage] = useState(null);
 	const [errorMessage, setErrorMessage] = useState(null);
 	const [errors, setErrors] = useState({});
 
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
-	const [login, { isLoading }] = useLoginMutation();
+	const [forgotPassword, { isLoading }] = useForgotPasswordMutation();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const data = new FormData(e.currentTarget);
 		const form = {
 			email: data.get("email"),
-			password: data.get("password"),
 		};
-		const res = await login(form);
+		const res = await forgotPassword(form);
 		if (res.data?.success) {
-			Cookies.set("token", res.data.data.token);
-			dispatch(setUser(res.data.data));
-			navigate("/");
+			document.getElementById("forgot-password-form").reset();
+			setSuccessMessage(res.data.message);
+			setErrorMessage(null);
+			setErrors({});
 		} else {
 			setErrorMessage(res.error.data?.message);
 			setErrors(res.error.data?.errors);
@@ -58,11 +55,11 @@ const Login = () => {
 					<LockOutlinedIcon />
 				</Avatar>
 				<Typography component="h1" variant="h5">
-					Login
+					Forgot Password
 				</Typography>
 				<Box
 					component="form"
-					id="login-form"
+					id="forgot-password-form"
 					onSubmit={handleSubmit}
 					noValidate
 					sx={{ mt: 1 }}
@@ -80,50 +77,30 @@ const Login = () => {
 						/>
 						<ValidationError error={errors?.email?.message} />
 
-						<TextField
-							margin="normal"
-							required
-							fullWidth
-							name="password"
-							label="Password"
-							type="password"
-							id="password"
-							autoComplete="current-password"
-						/>
-						<ValidationError error={errors?.password?.message} />
-
-						<Grid container justifyContent="flex-end">
-							<Grid item>
-								<RouterLink to="/forgot-password">
-									<Link component="span" variant="body2">
-										Forgot password?
-									</Link>
-								</RouterLink>
-							</Grid>
-						</Grid>
 						<Button
 							type="submit"
 							fullWidth
 							variant="contained"
 							sx={{ mt: 3, mb: 2 }}
 						>
-							{isLoading ? "Loading..." : "Login"}
+							{isLoading ? "Loading..." : "Email Password Reset Link"}
 						</Button>
 					</Grid>
 					<Grid container justifyContent="center">
 						<Grid item>
-							<RouterLink to="/register">
+							<RouterLink to="/login">
 								<Link component="span" variant="body2">
-									Don't have an account? Register
+									Already know password? Login
 								</Link>
 							</RouterLink>
 						</Grid>
 					</Grid>
 				</Box>
 			</Box>
+			<SuccessMessage message={successMessage} />
 			<ErrorMessage message={errorMessage} />
 		</Container>
 	);
 };
 
-export default Login;
+export default ForgotPassword;

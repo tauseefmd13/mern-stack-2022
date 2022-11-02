@@ -1,12 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "../App";
-import Home from "../pages/Home";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
-import ForgotPassword from "../pages/ForgotPassword";
-import ResetPassword from "../pages/ResetPassword";
 import CheckAuth from "../utils/CheckAuth";
 import Guest from "../utils/Guest";
+import App from "../App";
+import Home from "../pages/Home";
+import Login from "../pages/auth/Login";
+import Register from "../pages/auth/Register";
+import ForgotPassword from "../pages/auth/ForgotPassword";
+import ResetPassword from "../pages/auth/ResetPassword";
+import ChangePassword from "../pages/auth/ChangePassword";
 
 const router = createBrowserRouter([
 	{
@@ -52,7 +53,7 @@ const router = createBrowserRouter([
 				path: "/change-password",
 				element: (
 					<CheckAuth>
-						<div>Change Password</div>
+						<ChangePassword />
 					</CheckAuth>
 				),
 			},

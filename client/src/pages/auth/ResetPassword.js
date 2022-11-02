@@ -9,10 +9,10 @@ import {
 	TextField,
 	Typography,
 } from "@mui/material";
-import { useResetPasswordMutation } from "../app/services/authApi";
-import ValidationError from "../components/ValidationError";
-import SuccessMessage from "../components/SuccessMessage";
-import ErrorMessage from "../components/ErrorMessage";
+import { useResetPasswordMutation } from "../../app/services/authApi";
+import ValidationError from "../../components/ValidationError";
+import SuccessMessage from "../../components/SuccessMessage";
+import ErrorMessage from "../../components/ErrorMessage";
 import { useNavigate, useParams } from "react-router-dom";
 
 const ResetPassword = () => {
