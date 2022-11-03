@@ -128,7 +128,7 @@ const Header = () => {
 											component={NavLink}
 											to="/profile"
 										>
-											My Profile
+											Profile
 										</MenuItem>
 										<MenuItem
 											onClick={handleCloseUserMenu}
@@ -182,7 +182,7 @@ const Header = () => {
 											component={NavLink}
 											to="/profile"
 										>
-											My Profile
+											Profile
 										</MenuItem>
 										<MenuItem
 											onClick={handleCloseNavMenu}

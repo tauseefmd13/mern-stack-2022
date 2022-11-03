@@ -85,6 +85,9 @@ const Rightbar = () => {
 					sx={{
 						width: "100%",
 						maxWidth: 360,
+						position: "relative",
+						overflow: "auto",
+						maxHeight: 300,
 						bgcolor: "background.paper",
 					}}
 				>

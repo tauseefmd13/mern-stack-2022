@@ -18,6 +18,7 @@ import {
 	ListItemText,
 	Switch,
 } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = ({ mode, setMode }) => {
 	return (
@@ -25,11 +26,11 @@ const Sidebar = ({ mode, setMode }) => {
 			<Box position="fixed">
 				<List>
 					<ListItem disablePadding>
-						<ListItemButton component="a" href="#home">
+						<ListItemButton component={NavLink} to="/">
 							<ListItemIcon>
 								<Home />
 							</ListItemIcon>
-							<ListItemText primary="Homepage" />
+							<ListItemText primary="Home" />
 						</ListItemButton>
 					</ListItem>
 					<ListItem disablePadding>
@@ -73,7 +74,7 @@ const Sidebar = ({ mode, setMode }) => {
 						</ListItemButton>
 					</ListItem>
 					<ListItem disablePadding>
-						<ListItemButton component="a" href="#simple-list">
+						<ListItemButton component={NavLink} to="/profile">
 							<ListItemIcon>
 								<AccountBox />
 							</ListItemIcon>
