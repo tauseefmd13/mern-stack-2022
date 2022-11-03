@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { LoadingButton } from "@mui/lab";
 import {
 	Avatar,
 	Box,
-	Button,
 	Container,
 	Grid,
 	Link,
@@ -103,14 +103,15 @@ const Login = () => {
 							</Grid>
 						</Grid>
 					</Grid>
-					<Button
+					<LoadingButton
 						type="submit"
 						fullWidth
 						variant="contained"
 						sx={{ mt: 3, mb: 2 }}
+						loading={isLoading}
 					>
-						{isLoading ? "Loading..." : "Login"}
-					</Button>
+						Login
+					</LoadingButton>
 					<Grid container justifyContent="center">
 						<Grid item>
 							<RouterLink to="/register">

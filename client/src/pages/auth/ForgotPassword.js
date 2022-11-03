@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { LoadingButton } from "@mui/lab";
 import {
 	Avatar,
 	Box,
-	Button,
 	Container,
 	Grid,
-	Link,
 	TextField,
 	Typography,
 } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
 import { useForgotPasswordMutation } from "../../app/services/authApi";
 import ValidationError from "../../components/ValidationError";
 import SuccessMessage from "../../components/SuccessMessage";
@@ -78,23 +76,15 @@ const ForgotPassword = () => {
 							<ValidationError error={errors?.email?.message} />
 						</Grid>
 						<Grid item xs={12}>
-							<Button
+							<LoadingButton
 								type="submit"
 								fullWidth
 								variant="contained"
 								sx={{ mt: 1, mb: 2 }}
+								loading={isLoading}
 							>
-								{isLoading ? "Loading..." : "Email Password Reset Link"}
-							</Button>
-						</Grid>
-					</Grid>
-					<Grid container justifyContent="center">
-						<Grid item>
-							<RouterLink to="/login">
-								<Link component="span" variant="body2">
-									Already know password? Login
-								</Link>
-							</RouterLink>
+								Email Password Reset Link
+							</LoadingButton>
 						</Grid>
 					</Grid>
 				</Box>

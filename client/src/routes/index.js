@@ -1,7 +1,9 @@
-import { createBrowserRouter } from "react-router-dom";
+import { CssBaseline } from "@mui/material";
+import { createBrowserRouter, Outlet } from "react-router-dom";
 import CheckAuth from "../utils/CheckAuth";
 import Guest from "../utils/Guest";
-import App from "../App";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import Home from "../pages/Home";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
@@ -10,9 +12,20 @@ import ResetPassword from "../pages/auth/ResetPassword";
 import Profile from "../pages/auth/Profile";
 import ChangePassword from "../pages/auth/ChangePassword";
 
+const Layout = () => {
+	return (
+		<>
+			<CssBaseline />
+			<Header />
+			<Outlet />
+			<Footer />
+		</>
+	);
+};
+
 const router = createBrowserRouter([
 	{
-		element: <App />,
+		element: <Layout />,
 		children: [
 			{
 				path: "/",

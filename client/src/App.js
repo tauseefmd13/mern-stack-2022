@@ -1,11 +1,9 @@
-import { CssBaseline } from "@mui/material";
-import { Outlet } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import { RouterProvider } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useGetUserQuery } from "./app/services/authApi";
 import { setUser } from "./features/auth/authSlice";
+import router from "./routes/index.js";
 import Cookies from "js-cookie";
 
 function App() {
@@ -25,10 +23,7 @@ function App() {
 
 	return (
 		<>
-			<CssBaseline />
-			<Header />
-			<Outlet />
-			<Footer />
+			<RouterProvider router={router} />
 		</>
 	);
 }

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { LoadingButton } from "@mui/lab";
 import {
 	Avatar,
 	Box,
-	Button,
 	Container,
 	Grid,
 	TextField,
@@ -103,14 +103,15 @@ const ChangePassword = () => {
 							<ValidationError error={errors?.password_confirmation?.message} />
 						</Grid>
 					</Grid>
-					<Button
+					<LoadingButton
 						type="submit"
 						fullWidth
 						variant="contained"
 						sx={{ mt: 3, mb: 2 }}
+						loading={isLoading}
 					>
-						{isLoading ? "Loading..." : "Change Password"}
-					</Button>
+						Change Password
+					</LoadingButton>
 				</Box>
 			</Box>
 			<SuccessMessage message={successMessage} />

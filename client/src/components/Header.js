@@ -61,6 +61,7 @@ const Header = () => {
 							variant="h6"
 							component={NavLink}
 							to="/"
+							end
 							sx={{
 								flexGrow: 1,
 								fontFamily: "monospace",
@@ -74,15 +75,6 @@ const Header = () => {
 						</Typography>
 
 						<Box sx={{ display: { xs: "none", md: "flex" } }}>
-							<Button
-								sx={{ color: "white", textTransform: "none" }}
-								component={NavLink}
-								to="/"
-								end
-							>
-								Home
-							</Button>
-
 							{!isAuthenticated && (
 								<>
 									<Button
