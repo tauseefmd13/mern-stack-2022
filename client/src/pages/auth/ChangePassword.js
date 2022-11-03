@@ -54,69 +54,73 @@ const ChangePassword = () => {
 	};
 
 	return (
-		<Container component="main" maxWidth="xs">
-			<Box
-				sx={{
-					marginTop: 8,
-					display: "flex",
-					flexDirection: "column",
-					alignItems: "center",
-				}}
-			>
-				<Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-					<LockOutlinedIcon />
-				</Avatar>
-				<Typography component="h1" variant="h5">
-					Change Password
-				</Typography>
+		<Box flex={4} p={{ xs: 0, md: 2 }}>
+			<Container component="main" maxWidth="xs">
 				<Box
-					component="form"
-					id="change-password-form"
-					noValidate
-					onSubmit={handleSubmit}
-					sx={{ mt: 3 }}
+					sx={{
+						marginTop: 8,
+						display: "flex",
+						flexDirection: "column",
+						alignItems: "center",
+					}}
 				>
-					<Grid container spacing={2}>
-						<Grid item xs={12}>
-							<TextField
-								required
-								fullWidth
-								name="password"
-								label="New Password"
-								type="password"
-								id="password"
-								autoComplete="new-password"
-								autoFocus
-							/>
-							<ValidationError error={errors?.password?.message} />
-						</Grid>
-						<Grid item xs={12}>
-							<TextField
-								required
-								fullWidth
-								name="password_confirmation"
-								label="Confirm New Password"
-								type="password"
-								id="password_confirmation"
-								autoComplete="confirm-password"
-							/>
-							<ValidationError error={errors?.password_confirmation?.message} />
-						</Grid>
-					</Grid>
-					<LoadingButton
-						type="submit"
-						fullWidth
-						variant="contained"
-						sx={{ mt: 3, mb: 2 }}
-						loading={isLoading}
-					>
+					<Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+						<LockOutlinedIcon />
+					</Avatar>
+					<Typography component="h1" variant="h5">
 						Change Password
-					</LoadingButton>
+					</Typography>
+					<Box
+						component="form"
+						id="change-password-form"
+						noValidate
+						onSubmit={handleSubmit}
+						sx={{ mt: 3 }}
+					>
+						<Grid container spacing={2}>
+							<Grid item xs={12}>
+								<TextField
+									required
+									fullWidth
+									name="password"
+									label="New Password"
+									type="password"
+									id="password"
+									autoComplete="new-password"
+									autoFocus
+								/>
+								<ValidationError error={errors?.password?.message} />
+							</Grid>
+							<Grid item xs={12}>
+								<TextField
+									required
+									fullWidth
+									name="password_confirmation"
+									label="Confirm New Password"
+									type="password"
+									id="password_confirmation"
+									autoComplete="confirm-password"
+								/>
+								<ValidationError
+									error={errors?.password_confirmation?.message}
+								/>
+							</Grid>
+						</Grid>
+						<LoadingButton
+							type="submit"
+							fullWidth
+							variant="contained"
+							sx={{ mt: 3, mb: 2 }}
+							loading={isLoading}
+						>
+							Change Password
+						</LoadingButton>
+					</Box>
 				</Box>
-			</Box>
-			<SuccessMessage message={successMessage} />
-			<ErrorMessage message={errorMessage} />
-		</Container>
+				<SuccessMessage message={successMessage} />
+				<ErrorMessage message={errorMessage} />
+			</Container>
+		</Box>
 	);
 };
 

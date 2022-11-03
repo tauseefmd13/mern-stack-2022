@@ -53,7 +53,7 @@ const Header = () => {
 
 	return (
 		<>
-			<AppBar position="static">
+			<AppBar position="sticky">
 				<Container maxWidth="xl">
 					<Toolbar>
 						<AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -155,7 +155,7 @@ const Header = () => {
 								onClick={handleOpenNavMenu}
 								color="inherit"
 							>
-								<MenuIcon />
+								{isAuthenticated ? <AccountCircle /> : <MenuIcon />}
 							</IconButton>
 							<Menu
 								id="menu-appbar"
