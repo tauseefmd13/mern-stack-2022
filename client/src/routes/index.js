@@ -1,10 +1,5 @@
-import {
-	Box,
-	createTheme,
-	CssBaseline,
-	Stack,
-	ThemeProvider,
-} from "@mui/material";
+import React, { useState } from "react";
+import { Box, createTheme, Stack, ThemeProvider } from "@mui/material";
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import CheckAuth from "../utils/CheckAuth";
 import Guest from "../utils/Guest";
@@ -19,7 +14,6 @@ import Profile from "../pages/auth/Profile";
 import ChangePassword from "../pages/auth/ChangePassword";
 import Sidebar from "../components/Sidebar";
 import Rightbar from "../components/Rightbar";
-import { useState } from "react";
 
 const AppLayout = () => {
 	const [mode, setMode] = useState("light");
@@ -33,7 +27,6 @@ const AppLayout = () => {
 	return (
 		<ThemeProvider theme={darkTheme}>
 			<Box bgcolor={"background.default"} color={"text.primary"}>
-				<CssBaseline />
 				<Header />
 				<Stack direction="row" spacing={2} justifyContent="space-between">
 					<Sidebar setMode={setMode} mode={mode} />
@@ -48,7 +41,6 @@ const AppLayout = () => {
 const GuestLayout = () => {
 	return (
 		<>
-			<CssBaseline />
 			<Header />
 			<Outlet />
 			<Footer />

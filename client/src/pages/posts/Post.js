@@ -1,4 +1,11 @@
-import { Favorite, FavoriteBorder, MoreVert, Share } from "@mui/icons-material";
+import React, { useState } from "react";
+import {
+	Favorite,
+	FavoriteBorder,
+	MoreVert,
+	Share,
+	TextsmsOutlined,
+} from "@mui/icons-material";
 import {
 	Avatar,
 	Card,
@@ -7,13 +14,21 @@ import {
 	CardHeader,
 	CardMedia,
 	Checkbox,
+	Collapse,
 	IconButton,
 	Typography,
 } from "@mui/material";
+import Comments from "../comments/Comments";
 
 const Post = () => {
+	const [expanded, setExpanded] = useState(false);
+
+	const handleExpandClick = () => {
+		setExpanded(!expanded);
+	};
+
 	return (
-		<Card sx={{ margin: 5 }}>
+		<Card sx={{ margin: { xs: 0, md: 5 }, marginBottom: { xs: 2, md: 0 } }}>
 			<CardHeader
 				avatar={
 					<Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
@@ -47,11 +62,28 @@ const Post = () => {
 						icon={<FavoriteBorder />}
 						checkedIcon={<Favorite sx={{ color: "red" }} />}
 					/>
+					<Typography variant="body2" color="text.secondary">
+						12 Likes
+					</Typography>
+				</IconButton>
+				<IconButton
+					expand={expanded.toString()}
+					onClick={handleExpandClick}
+					aria-expanded={expanded}
+					aria-label="comment"
+				>
+					<TextsmsOutlined />
+					<Typography variant="body2" color="text.secondary">
+						12 Comments
+					</Typography>
 				</IconButton>
 				<IconButton aria-label="share">
 					<Share />
 				</IconButton>
 			</CardActions>
+			<Collapse in={expanded} timeout="auto" unmountOnExit>
+				<Comments />
+			</Collapse>
 		</Card>
 	);
 };

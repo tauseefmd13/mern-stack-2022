@@ -23,10 +23,21 @@ const UserBox = styled(Box)({
 	marginBottom: "20px",
 });
 
+const PostBox = styled(Box)({
+	display: "flex",
+	justifyContent: "space-between",
+	alignItems: "center",
+});
+
 const CreatePost = () => {
 	return (
 		<>
-			<Box bgcolor={"background.default"} color={"text.primary"} p={3} mx={2}>
+			<Box
+				bgcolor={"background.default"}
+				color={"text.primary"}
+				p={3}
+				mx={{ xs: 0, md: 2 }}
+			>
 				<UserBox>
 					<Avatar
 						src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
@@ -42,27 +53,27 @@ const CreatePost = () => {
 					name="title"
 					multiline
 					rows={3}
-					placeholder="What's on your mind?"
+					label="What's on your mind?"
 					variant="standard"
 				/>
-				<Stack direction="row" gap={1} mt={2} mb={3}>
-					<EmojiEmotions color="primary" />
+				<PostBox>
+					<Stack direction="row" gap={1} mt={2} mb={3}>
+						<EmojiEmotions color="primary" />
 
-					<TextField type="file" id="file" sx={{ display: "none" }} />
-					<InputLabel htmlFor="file">
-						<Image color="secondary" />
-					</InputLabel>
+						<TextField type="file" id="file" sx={{ display: "none" }} />
+						<InputLabel htmlFor="file">
+							<Image color="secondary" />
+						</InputLabel>
 
-					<TextField type="file" id="video" sx={{ display: "none" }} />
-					<InputLabel htmlFor="video">
-						<VideoCameraBack color="success" />
-					</InputLabel>
+						<TextField type="file" id="video" sx={{ display: "none" }} />
+						<InputLabel htmlFor="video">
+							<VideoCameraBack color="success" />
+						</InputLabel>
 
-					<PersonAdd color="error" />
-				</Stack>
-				<Button fullWidth variant="contained">
-					Post
-				</Button>
+						<PersonAdd color="error" />
+					</Stack>
+					<Button variant="contained">Post</Button>
+				</PostBox>
 			</Box>
 		</>
 	);

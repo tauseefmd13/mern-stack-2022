@@ -16,7 +16,15 @@ import {
 const Rightbar = () => {
 	return (
 		<Box flex={2} p={2} sx={{ display: { xs: "none", sm: "block" } }}>
-			<Box position="fixed" width={300}>
+			<Box
+				position="fixed"
+				width={300}
+				sx={{
+					overflow: "auto",
+					maxHeight: 550,
+				}}
+				className="right-bar"
+			>
 				<Typography variant="h6" fontWeight={100}>
 					Online Friends
 				</Typography>
@@ -85,9 +93,6 @@ const Rightbar = () => {
 					sx={{
 						width: "100%",
 						maxWidth: 360,
-						position: "relative",
-						overflow: "auto",
-						maxHeight: 300,
 						bgcolor: "background.paper",
 					}}
 				>
