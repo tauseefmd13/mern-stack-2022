@@ -16,10 +16,25 @@ const userSchema = new Schema(
 			required: true,
 			unique: true,
 		},
-		email_verified_at: { type: Date, default: null },
+		email_verified_at: {
+			type: Date,
+			default: "",
+		},
 		password: {
 			type: String,
 			required: true,
+		},
+		avatar: {
+			type: String,
+			default: "",
+		},
+		cover_photo: {
+			type: String,
+			default: "",
+		},
+		is_admin: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	{
