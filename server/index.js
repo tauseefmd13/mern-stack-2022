@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use("/uploads", express.static("./public/uploads"));
+app.use("/public/uploads", express.static("./public/uploads"));
 
 extendMessages({
 	required: "The :attribute field is required.",

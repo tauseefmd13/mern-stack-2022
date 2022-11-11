@@ -18,7 +18,7 @@ const userSchema = new Schema(
 		},
 		email_verified_at: {
 			type: Date,
-			default: "",
+			default: null,
 		},
 		password: {
 			type: String,
@@ -31,6 +31,14 @@ const userSchema = new Schema(
 		cover_photo: {
 			type: String,
 			default: "",
+		},
+		followers: {
+			type: Array,
+			default: [],
+		},
+		followings: {
+			type: Array,
+			default: [],
 		},
 		is_admin: {
 			type: Boolean,

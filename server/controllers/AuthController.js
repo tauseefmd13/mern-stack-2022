@@ -5,27 +5,27 @@ import User from "../models/User.js";
 import transporter from "../config/mail.js";
 
 export const register = async (req, res) => {
-	const v = new Validator(req.body, {
-		first_name: "required|maxLength:255",
-		last_name: "required|maxLength:255",
-		email: "required|email",
-		password: "required|minLength:8",
-		password_confirmation: "required|same:password",
-	});
-
-	const validated = await v.check();
-
-	if (!validated) {
-		return res.status(422).json({
-			success: false,
-			message: "Validation failed.",
-			errors: v.errors,
-		});
-	}
-
-	const { first_name, last_name, email, password } = req.body;
-
 	try {
+		const v = new Validator(req.body, {
+			first_name: "required|maxLength:255",
+			last_name: "required|maxLength:255",
+			email: "required|email",
+			password: "required|minLength:8",
+			password_confirmation: "required|same:password",
+		});
+
+		const validated = await v.check();
+
+		if (!validated) {
+			return res.status(422).json({
+				success: false,
+				message: "Validation failed.",
+				errors: v.errors,
+			});
+		}
+
+		const { first_name, last_name, email, password } = req.body;
+
 		//check user exists
 		const userExists = await User.findOne({ email });
 		if (userExists) {
@@ -52,7 +52,6 @@ export const register = async (req, res) => {
 		const token = jwt.sign(
 			{
 				_id: user._id,
-				email: user.email,
 			},
 			process.env.JWT_SECRET_KEY,
 			{
@@ -66,31 +65,29 @@ export const register = async (req, res) => {
 			data: { user, token },
 		});
 	} catch (error) {
-		return res
-			.status(500)
-			.json({ success: false, message: "Something went wrong." });
+		return res.status(500).json({ success: false, message: error.message });
 	}
 };
 
 export const login = async (req, res) => {
-	const v = new Validator(req.body, {
-		email: "required",
-		password: "required",
-	});
-
-	const validated = await v.check();
-
-	if (!validated) {
-		return res.status(422).json({
-			success: false,
-			message: "Validation failed.",
-			errors: v.errors,
-		});
-	}
-
-	const { email, password } = req.body;
-
 	try {
+		const v = new Validator(req.body, {
+			email: "required",
+			password: "required",
+		});
+
+		const validated = await v.check();
+
+		if (!validated) {
+			return res.status(422).json({
+				success: false,
+				message: "Validation failed.",
+				errors: v.errors,
+			});
+		}
+
+		const { email, password } = req.body;
+
 		const user = await User.findOne({ email });
 
 		if (!user) {
@@ -113,7 +110,6 @@ export const login = async (req, res) => {
 		const token = jwt.sign(
 			{
 				_id: user._id,
-				email: user.email,
 			},
 			process.env.JWT_SECRET_KEY,
 			{
@@ -127,30 +123,28 @@ export const login = async (req, res) => {
 			data: { user, token },
 		});
 	} catch (error) {
-		return res
-			.status(500)
-			.json({ success: false, message: "Something went wrong." });
+		return res.status(500).json({ success: false, message: error.message });
 	}
 };
 
 export const forgotPassword = async (req, res) => {
-	const v = new Validator(req.body, {
-		email: "required",
-	});
-
-	const validated = await v.check();
-
-	if (!validated) {
-		return res.status(422).json({
-			success: false,
-			message: "Validation failed.",
-			errors: v.errors,
-		});
-	}
-
-	const { email } = req.body;
-
 	try {
+		const v = new Validator(req.body, {
+			email: "required",
+		});
+
+		const validated = await v.check();
+
+		if (!validated) {
+			return res.status(422).json({
+				success: false,
+				message: "Validation failed.",
+				errors: v.errors,
+			});
+		}
+
+		const { email } = req.body;
+
 		const user = await User.findOne({ email });
 
 		if (user) {
@@ -159,7 +153,6 @@ export const forgotPassword = async (req, res) => {
 			const token = jwt.sign(
 				{
 					_id: user._id,
-					email: user.email,
 				},
 				secretKey,
 				{
@@ -184,32 +177,30 @@ export const forgotPassword = async (req, res) => {
 			message: "We have emailed your password reset link.",
 		});
 	} catch (error) {
-		return res
-			.status(500)
-			.json({ success: false, message: "Something went wrong." });
+		return res.status(500).json({ success: false, message: error.message });
 	}
 };
 
 export const resetPassword = async (req, res) => {
-	const v = new Validator(req.body, {
-		password: "required|minLength:8",
-		password_confirmation: "required|same:password",
-	});
-
-	const validated = await v.check();
-
-	if (!validated) {
-		return res.status(422).json({
-			success: false,
-			message: "Validation failed.",
-			errors: v.errors,
-		});
-	}
-
-	const { password } = req.body;
-	const { id, token } = req.params;
-
 	try {
+		const v = new Validator(req.body, {
+			password: "required|minLength:8",
+			password_confirmation: "required|same:password",
+		});
+
+		const validated = await v.check();
+
+		if (!validated) {
+			return res.status(422).json({
+				success: false,
+				message: "Validation failed.",
+				errors: v.errors,
+			});
+		}
+
+		const { password } = req.body;
+		const { id, token } = req.params;
+
 		const user = await User.findById(id);
 
 		const secretKey = user._id + process.env.JWT_SECRET_KEY;

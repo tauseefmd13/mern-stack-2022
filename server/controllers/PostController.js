@@ -2,8 +2,11 @@ import Post from "../models/Post.js";
 
 export const index = async (req, res) => {
 	try {
-		const userPosts = await Post.find({ user_id: req.user._id });
-		if (!userPosts) {
+		const userPosts = await Post.find({ user: req.user._id })
+			.populate("user", "first_name last_name avatar")
+			.sort({ createdAt: -1 });
+
+		if (!userPosts.length) {
 			return res
 				.status(404)
 				.json({ success: false, message: "Posts not found." });
@@ -15,9 +18,7 @@ export const index = async (req, res) => {
 			data: userPosts,
 		});
 	} catch (error) {
-		return res
-			.status(500)
-			.json({ success: false, message: "Something went wrong." });
+		return res.status(500).json({ success: false, message: error.message });
 	}
 };
 
@@ -36,16 +37,13 @@ export const show = async (req, res) => {
 			data: post,
 		});
 	} catch (error) {
-		return res
-			.status(500)
-			.json({ success: false, message: "Something went wrong." });
+		return res.status(500).json({ success: false, message: error.message });
 	}
 };
 
 export const store = async (req, res) => {
 	try {
-		const post = await Post(req.body);
-		post.user_id = req.user._id;
+		const post = await Post({ ...req.body, user: req.user._id });
 
 		await post.save();
 
@@ -55,9 +53,7 @@ export const store = async (req, res) => {
 			data: post,
 		});
 	} catch (error) {
-		return res
-			.status(500)
-			.json({ success: false, message: "Something went wrong." });
+		return res.status(500).json({ success: false, message: error.message });
 	}
 };
 
@@ -70,12 +66,8 @@ export const update = async (req, res) => {
 				.json({ success: false, message: "Post not found." });
 		}
 
-		if (post.user_id && post.user_id.toString() !== req.user._id.toString()) {
+		if (post.user.toString() !== req.user._id.toString()) {
 			return res.status(403).json({ success: false, message: "Forbidden." });
-		}
-
-		if (!post.user_id) {
-			req.body.user_id = req.user._id;
 		}
 
 		const updatedPost = await Post.findByIdAndUpdate(
@@ -90,9 +82,7 @@ export const update = async (req, res) => {
 			data: updatedPost,
 		});
 	} catch (error) {
-		return res
-			.status(500)
-			.json({ success: false, message: "Something went wrong." });
+		return res.status(500).json({ success: false, message: error.message });
 	}
 };
 
@@ -105,7 +95,7 @@ export const destroy = async (req, res) => {
 				.json({ success: false, message: "Post not found." });
 		}
 
-		if (post.user_id.toString() !== req.user._id.toString()) {
+		if (post.user.toString() !== req.user._id.toString()) {
 			return res.status(403).json({ success: false, message: "Forbidden." });
 		}
 
@@ -117,8 +107,6 @@ export const destroy = async (req, res) => {
 			data: null,
 		});
 	} catch (error) {
-		return res
-			.status(500)
-			.json({ success: false, message: "Something went wrong." });
+		return res.status(500).json({ success: false, message: error.message });
 	}
 };

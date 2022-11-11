@@ -18,31 +18,19 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post("/image", upload.single("image"), (req, res) => {
-	try {
-		return res.status(200).json({
-			success: true,
-			message: "Image uploaded successfully.",
-			data: req.file,
-		});
-	} catch (error) {
-		return res
-			.status(500)
-			.json({ success: false, message: "Something went wrong." });
-	}
-});
-
-router.post("/file", upload.single("file"), (req, res) => {
+router.post("/", upload.single("file"), (req, res) => {
 	try {
 		return res.status(200).json({
 			success: true,
 			message: "File uploaded successfully.",
-			data: req.file,
+			data: {
+				filename: req.file.filename,
+				path: req.file.path.replace(/\\/g, "/"),
+				fullpath: process.env.APP_URL + "/" + req.file.path.replace(/\\/g, "/"),
+			},
 		});
 	} catch (error) {
-		return res
-			.status(500)
-			.json({ success: false, message: "Something went wrong." });
+		return res.status(500).json({ success: false, message: error.message });
 	}
 });
 
